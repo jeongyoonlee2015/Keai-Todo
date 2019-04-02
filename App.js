@@ -4,16 +4,34 @@ import { Styles, StyleSheet, Text, View, StatusBar, TextInput, Dimensions, Platf
 const{height, width} = Dimensions.get("window");
 
 export default class App extends React.Component {
+  state = {
+    newTodo: ""
+  }
   render() {
+    const{newToDo} = this.state;
     return (
-      <View style={styles.container}>
+      <View style = {styles.container}>
         <StatusBar barStyle="light-content" />
-        <Text sytle={styles.title}>Keai To Do</Text>
-        <View style={styles.card}>
-          <TextInput style={styles.input} placeholder={"New To Do"} />
+        <Text sytle = {styles.title}>Keai To Do</Text>
+        <View style = {styles.card}>
+          <TextInput style={styles.input} 
+                     placeholder={"New To Do"} 
+                     value={newToDo} 
+                     onChangeText={this._controlNewTodo}
+                     placeholderTextColor={"#999"}
+                     returnKeyType={"done"}
+                  autoCorrect={false}
+          />
+        <scrollView> //NewFile
+        </scrollView>
           </View>
       </View>
     );
+  }
+  _controlNewToDo = text => {
+    this.setState({
+      newToDo: text
+    });
   }
 }  
 //여기 있던 중괄호 없애버림
@@ -26,14 +44,15 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "white",
-    fontSize: 50,
-    marginTop: 200,
+    fontSize: 500,
+    marginTop: 300,
     fontWeight: "200",
     marginBottom: 300
   },
   card:{
     backgroundColor: "white",
     flex: 1,
+    height: 10,
     width: width - 100,
     borderRadius: 10,
     ...Platform.select({
@@ -52,5 +71,11 @@ const styles = StyleSheet.create({
 
       }
     })
+  },
+  input: {
+    padding:20,
+    borderBottomColor:"#bbb",
+    borderBottomWidth: 1,
+    fontSize: 25
   }
 });
