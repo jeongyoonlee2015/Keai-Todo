@@ -5,7 +5,7 @@ class ToDo extends React.Component{
         //stateful component: 수정하면 바뀌어야해서?!
         return(
             <View>
-                <Text> Hello I'm a Todo </Text>
+                <Text> Hello I am a Todo </Text>
             </View>
         );
     }
